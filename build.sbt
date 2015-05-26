@@ -2,7 +2,7 @@ lazy val scalatraVersion = "2.3.1"
 
 lazy val root = (project in file(".")).settings(
   organization := "com.example",
-  name := "scalatra-sbt-prototype",
+  name := "scalatra-minimal-rest",
   version := "0.1.0-SNAPSHOT",
   scalaVersion := "2.11.6",
   scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
