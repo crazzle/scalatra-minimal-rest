@@ -1,2 +1,1 @@
-# scalatra-test
-Read-Me
+### scalatra test
