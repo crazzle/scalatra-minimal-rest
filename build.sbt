@@ -6,6 +6,9 @@ lazy val root = (project in file(".")).settings(
   version := "0.1.0-SNAPSHOT",
   scalaVersion := "2.11.6",
   scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
+  artifactName := { (sv: ScalaVersion, module: ModuleID, artifact: Artifact) =>
+    artifact.name + "." + artifact.extension
+  },
   libraryDependencies ++= Seq(
     "org.scalatra"      %% "scalatra"          % scalatraVersion,
     "org.scalatra"      %% "scalatra-specs2"   % scalatraVersion    % "test",
