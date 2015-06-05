@@ -1,6 +1,6 @@
 package com.example.app
 
-import _root_.akka.actor.{Actor, ActorRef, ActorSystem}
+import akka.actor.{Actor, ActorRef, ActorSystem}
 import akka.pattern.ask
 import akka.util.Timeout
 import org.scalatra._

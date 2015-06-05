@@ -1,16 +1,26 @@
 package com.example.app
 
+import akka.actor.{Props, ActorSystem}
 import org.scalatra.test.specs2._
 
-// For more on Specs2, see http://etorreborre.github.com/specs2/guide/org.specs2.guide.QuickStart.html 
-class MyScalatraServletSpec extends ScalatraSpec { def is =
-  "GET / on MyScalatraServlet"                     ^
-    "should return status 200"                  ! root200^
-                                                end
-    
-  addServlet(classOf[MyScalatraServlet], "/*")
+class MyScalatraServletSpec() extends ScalatraSpec {
+  val system = ActorSystem()
+  val actorRef = system.actorOf(Props[MyActor])
 
-  def root200 = get("/") { 
+  addServlet(new MyScalatraServlet(system, actorRef), "/*")
+
+  def is =
+    "GET / on MyScalatraServlet" ^
+      "should return status 200" ! root200 ^ end
+
+  def root200 = get("/") {
     status must_== 200
   }
+
+  def cleanUp() = {
+    system.shutdown()
+  }
+
+  // cleanup there
+  step(cleanUp())
 }
